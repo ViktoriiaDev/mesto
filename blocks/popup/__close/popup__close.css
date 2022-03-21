@@ -1,0 +1,21 @@
+.popup__close {
+  padding: 0;
+  position: absolute;
+  left: calc(100% + 36px);
+  bottom: calc(100% + 36px);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}
+
+@media screen and (max-width: 1279px) {
+  .popup__close {
+    width: 20px;
+    height: 20px;
+    left: unset;
+    right: -25px;
+    bottom: calc(100% + 52px);
+  }
+}
