@@ -16,3 +16,7 @@
     align-items: center;
   }
 }
+
+.profile__edit-button:hover {
+  opacity: .4;
+}
