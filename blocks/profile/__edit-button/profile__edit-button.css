@@ -5,6 +5,7 @@
   box-sizing: border-box;
   margin-left: 18px;
   background: transparent;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1279px) {

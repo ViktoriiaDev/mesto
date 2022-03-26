@@ -1,8 +1,8 @@
 .popup__close {
   padding: 0;
   position: absolute;
-  left: calc(100% + 36px);
-  bottom: calc(100% + 36px);
+  left: calc(100% + 8px);
+  bottom: calc(100% + 8px);
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -15,8 +15,8 @@
     width: 20px;
     height: 20px;
     left: unset;
-    right: -25px;
-    bottom: calc(100% + 52px);
+    right: 0;
+    bottom: calc(100% + 16px);
   }
 }
 

@@ -7,6 +7,7 @@
   width: 22px;
   height: 19px;
   background-image: url(../../../images/heart.svg);
+  cursor: pointer;
 }
 
 .cards__item-button:hover {

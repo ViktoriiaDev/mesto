@@ -3,8 +3,8 @@ let popup = document.querySelector('.popup');
 let popupCloseButton = document.querySelector('.popup__close');
 let title = document.querySelector('.profile__info-title');
 let subtitle = document.querySelector('.profile__info-subtitle');
-let inputTitle = document.querySelector('.popup__form-name');
-let inputSubtitle = document.querySelector('.popup__form-description');
+let inputTitle = document.querySelector('.popup__form-input_input_name');
+let inputSubtitle = document.querySelector('.popup__form-input_input_description');
 let popupForm = document.querySelector('.popup__form');
 
 function handlePopupOpen() {
@@ -13,13 +13,9 @@ function handlePopupOpen() {
   inputSubtitle.value = subtitle.textContent;
 }
 
-editButton.addEventListener('click', handlePopupOpen);
-
 function handlePopupClose() {
   popup.classList.remove('popup_open');
 }
-
-popupCloseButton.addEventListener('click', handlePopupClose);
 
 function handleSubmitForm(event) {
   event.preventDefault();
@@ -28,4 +24,6 @@ function handleSubmitForm(event) {
   handlePopupClose();
 }
 
+editButton.addEventListener('click', handlePopupOpen);
+popupCloseButton.addEventListener('click', handlePopupClose);
 popupForm.addEventListener('submit', handleSubmitForm);

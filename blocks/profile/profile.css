@@ -1,5 +1,5 @@
 .profile {
-  margin: 40px 200px 0 200px;
+  margin: 40px auto 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
