@@ -9,4 +9,6 @@
   -moz-text-size-adjust: 100%;
   text-rendering: optimizeLegibility;
   color: #FFFFFF;
+  max-width: 880px;
+  margin: 0 auto;
 }
