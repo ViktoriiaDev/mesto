@@ -1,0 +1,9 @@
+.picture__description {
+  margin: 0;
+  position: absolute;
+  top: calc(100% + 10px);
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.25;
+  color: #FFFFFF;
+}

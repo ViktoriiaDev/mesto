@@ -13,6 +13,10 @@ const cardList = document.querySelector('.cards__list');
 const inputPlaceName = document.querySelector('.popup__form-input_place_name');
 const inputPlaceLink = document.querySelector('.popup__form-input_place_link');
 const cardAddButton = document.querySelector('.profile__add-button');
+const picture = document.querySelector('.picture');
+const pictureImage = document.querySelector('.picture__image');
+const pictureDescription = document.querySelector('.picture__description');
+const popupWindow = document.querySelector('.popup__window');
 
 const initialCards = [
   {
@@ -54,12 +58,27 @@ const createPlace = (card) => {
   const cardItem = template.content.querySelector('.cards__item').cloneNode(true);
   const name = cardItem.querySelector('.cards__item-title');
   const image = cardItem.querySelector('.cards__item-image');
+  const heartButton = cardItem.querySelector('.cards__item-button');
+  const removeCard = cardItem.querySelector('.cards__trash-button');
   name.textContent = card.name;
   image.setAttribute('src', card.link);
-  const heartButton = cardItem.querySelector('.cards__item-button');
-  heartButton.addEventListener('click', function(event) {
+
+  heartButton.addEventListener('click', function (event) {
     event.target.classList.toggle('cards__item-button_active');
   })
+
+  removeCard.addEventListener('click', function () {
+    cardItem.remove();
+  })
+
+  image.addEventListener('click', function () {
+    popup.classList.add('popup_open');
+    picture.classList.add('picture_open');
+    popupWindow.classList.add('popup__window_image');
+    pictureImage.setAttribute('src', card.link);
+    pictureDescription.textContent = card.name;
+  })
+
   return cardItem
 }
 
@@ -85,6 +104,8 @@ function handlePopupClose() {
   popup.classList.remove('popup_open');
   profileForm.classList.remove('profile-form_open');
   cardForm.classList.remove('card-form_open');
+  picture.classList.remove('picture_open');
+  popupWindow.classList.remove('popup__window_image');
 }
 
 function handleSubmitForm(event) {
@@ -94,7 +115,7 @@ function handleSubmitForm(event) {
 
 }
 
-const handleSubmitCardForm = (event) =>{
+const handleSubmitCardForm = (event) => {
   event.preventDefault();
   const placeName = inputPlaceName.value;
   const placeLink = inputPlaceLink.value;
@@ -105,6 +126,7 @@ const handleSubmitCardForm = (event) =>{
   cardList.prepend(card);
   handlePopupClose();
 }
+
 
 
 editButton.addEventListener('click', handleProfileOpen);
