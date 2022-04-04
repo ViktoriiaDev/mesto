@@ -112,7 +112,7 @@ function handleSubmitForm(event) {
   event.preventDefault();
   title.textContent = inputTitle.value;
   subtitle.textContent = inputSubtitle.value;
-
+  handlePopupClose();
 }
 
 const handleSubmitCardForm = (event) => {
@@ -134,3 +134,9 @@ popupCloseButton.addEventListener('click', handlePopupClose);
 popupForm.addEventListener('submit', handleSubmitForm);
 cardAddButton.addEventListener('click', handleCardOpen);
 popupCardForm.addEventListener('submit', handleSubmitCardForm);
+
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') {
+    handlePopupClose();
+  }
+})

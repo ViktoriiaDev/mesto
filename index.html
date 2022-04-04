@@ -57,21 +57,24 @@
         <h2 class="popup__title">Новое место</h2>
         <form class="popup__card-form" name="popup-card-form">
           <input placeholder="Название" name="place-name" class="popup__form-input popup__form-input_place_name" />
-          <input placeholder="Ссылка на картинку" name="place-link" class="popup__form-input popup__form-input_place_link" />
+          <input placeholder="Ссылка на картинку" name="place-link"
+            class="popup__form-input popup__form-input_place_link" />
           <button class="popup__form-submit" type="submit">Создать</button>
         </form>
       </div>
       <div class="picture">
-        <img class="picture__image"/>
+        <img class="picture__image" />
         <p class="picture__description"></p>
       </div>
     </div>
   </div>
   <template id="cards__item">
     <li class="cards__item">
-      <img class="cards__item-image" src="" alt=""/>
+      <div class="cards__item-image-container">
+        <img class="cards__item-image" src="" alt="" />
+      </div>
       <button class="cards__trash-button">
-        <img src="./images/trash.svg" alt="Урна"/>
+        <img src="./images/trash.svg" alt="Урна" />
       </button>
       <div class="cards__item-description">
         <h2 class="cards__item-title"></h2>

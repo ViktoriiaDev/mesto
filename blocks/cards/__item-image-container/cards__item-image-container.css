@@ -1,0 +1,6 @@
+.cards__item-image-container {
+  width: 100%;
+  padding-top: 100%;
+  position: relative;
+  overflow: hidden;
+}
