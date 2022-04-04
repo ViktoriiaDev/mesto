@@ -1,0 +1,89 @@
+[33mcommit 400472621df12c5e65dc6f6f8efdc6906a0076cc[m[33m ([m[1;36mHEAD -> [m[1;32mfeature[m[33m)[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Mon Apr 4 17:49:02 2022 +0300
+
+    feat: add opacity
+
+[33mcommit 18b6d9bc4f6eed11ff48431a281f046e52b05a66[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Mon Apr 4 15:24:19 2022 +0300
+
+    fixed size of pictures
+
+[33mcommit 3075809420c8a826aae7b69aab87c1585c209789[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Sun Apr 3 22:55:28 2022 +0300
+
+    faet: open image on click
+
+[33mcommit d0ddd173e0c1337443c00d0d5c5adefbb11fa2ea[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Sun Apr 3 21:06:58 2022 +0300
+
+    feat: add button for likes
+
+[33mcommit 32b72916fb4de05003dd4536011bbad69ff9437d[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Sun Apr 3 15:10:03 2022 +0300
+
+    feat: add cards in js
+
+[33mcommit 7f99187f96ebc9484da623c236e7efd72d8d66ab[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Sun Mar 27 21:26:48 2022 +0300
+
+    fixed mistakes 3.0
+
+[33mcommit 179c1c0f614c3455a7af651b94c3e02d00c49ca6[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Sun Mar 27 13:02:07 2022 +0300
+
+    fixed review mistakes 2.0
+
+[33mcommit 36b745df7019478e8cdfcccad366eca4298c0013[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Sat Mar 26 17:03:43 2022 +0300
+
+    fixed review mistakes
+
+[33mcommit 5b37b257c713729f32bc3ab8c1b557639ac5fab8[m
+Author: ViktoriiaDev <97833784+ViktoriiaDev@users.noreply.github.com>
+Date:   Wed Mar 23 23:39:03 2022 +0300
+
+    Update README.md
+
+[33mcommit f2b2d7f96a0c0f9ea1ce9af99cb86bcb57c441ac[m[33m ([m[1;32mview[m[33m)[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Wed Mar 23 23:27:16 2022 +0300
+
+    finished hover
+
+[33mcommit 049896a779e6d97336ba3019c86edaf24508f455[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Wed Mar 23 22:39:03 2022 +0300
+
+    finished js
+
+[33mcommit c4b634879322103a510554094c51ea6dccfebb27[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Tue Mar 22 00:06:30 2022 +0300
+
+    finished view page
+
+[33mcommit 6555894b44b4de6ed1b8cbc06647323fb8eb443b[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Mon Mar 21 23:02:29 2022 +0300
+
+    finish footer block
+
+[33mcommit 8903f81c2cdcbf733742f2bd792f05ac56abdd07[m
+Author: Viktoria Kotenko <kvi6605@gmail.com>
+Date:   Mon Mar 21 00:36:26 2022 +0300
+
+    finish profile block
+
+[33mcommit fbf21059a0bafcda4ce9f4fe8b10823041eab7d1[m
+Author: ViktoriiaDev <97833784+ViktoriiaDev@users.noreply.github.com>
+Date:   Fri Mar 18 22:37:00 2022 +0300
+
+    Initial commit
