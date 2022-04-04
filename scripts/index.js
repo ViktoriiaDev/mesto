@@ -50,9 +50,6 @@ const initialCards = [
 
 ];
 
-
-
-
 const createPlace = (card) => {
   const template = document.querySelector('#cards__item');
   const cardItem = template.content.querySelector('.cards__item').cloneNode(true);
@@ -73,6 +70,7 @@ const createPlace = (card) => {
 
   image.addEventListener('click', function () {
     popup.classList.add('popup_open');
+    popup.classList.add('popup_open-picture');
     picture.classList.add('picture_open');
     popupWindow.classList.add('popup__window_image');
     pictureImage.setAttribute('src', card.link);
@@ -102,10 +100,14 @@ function handleCardOpen() {
 
 function handlePopupClose() {
   popup.classList.remove('popup_open');
-  profileForm.classList.remove('profile-form_open');
-  cardForm.classList.remove('card-form_open');
-  picture.classList.remove('picture_open');
-  popupWindow.classList.remove('popup__window_image');
+
+  setTimeout(function() {
+    profileForm.classList.remove('profile-form_open');
+    cardForm.classList.remove('card-form_open');
+    picture.classList.remove('picture_open');
+    popupWindow.classList.remove('popup__window_image');
+    popup.classList.remove('popup_open-picture');
+  }, 500);
 }
 
 function handleSubmitForm(event) {
@@ -126,8 +128,6 @@ const handleSubmitCardForm = (event) => {
   cardList.prepend(card);
   handlePopupClose();
 }
-
-
 
 editButton.addEventListener('click', handleProfileOpen);
 popupCloseButton.addEventListener('click', handlePopupClose);
