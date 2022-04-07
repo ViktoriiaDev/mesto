@@ -40,38 +40,53 @@
     <div class="footer__copyright">&copy; 2020 Mesto Russia</div>
   </footer>
 
-  <div class="popup">
+  <div class="popup popup_profile">
     <div class="popup__window">
-      <button class="popup__close" type="button">
+      <button class="popup__close popup_profile_close" type="button">
         <img class="popup__close-icon" src="./images/close-icon.svg" alt="Крест">
       </button>
-      <div class="profile-form">
-        <h2 class="popup__title">Редактировать профиль</h2>
-        <form class="popup__form" name="popup-form">
-          <input name="name" class="popup__form-input popup__form-input_input_name" />
-          <input name="description" class="popup__form-input popup__form-input_input_description" />
-          <button class="popup__form-submit" type="submit">Сохранить</button>
-        </form>
-      </div>
-      <div class="card-form">
-        <h2 class="popup__title">Новое место</h2>
-        <form class="popup__card-form" name="popup-card-form">
-          <input placeholder="Название" name="place-name" class="popup__form-input popup__form-input_place_name" />
-          <input placeholder="Ссылка на картинку" name="place-link"
-            class="popup__form-input popup__form-input_place_link" />
-          <button class="popup__form-submit" type="submit">Создать</button>
-        </form>
-      </div>
-      <div class="picture">
-        <img class="picture__image" src="/" alt="/"/>
-        <div class="picture__description"></div>
-      </div>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <form class="popup__form" name="popup-form">
+        <input placeholder="Имя" name="name" class="popup__form-input popup__form-input_input_name" />
+        <input placeholder="Профессия" name="description" class="popup__form-input popup__form-input_input_description" />
+        <button class="popup__form-submit" type="submit">Сохранить</button>
+      </form>
     </div>
   </div>
+
+
+  <div class="popup popup_card">
+    <div class="popup__window">
+      <button class="popup__close popup_card_close" type="button">
+        <img class="popup__close-icon" src="./images/close-icon.svg" alt="Крест">
+      </button>
+      <h2 class="popup__title">Новое место</h2>
+      <form class="popup__card-form" name="popup-card-form">
+        <input placeholder="Название" name="place-name" class="popup__form-input popup__form-input_place_name" />
+        <input placeholder="Ссылка на картинку" name="place-link"
+          class="popup__form-input popup__form-input_place_link" />
+        <button class="popup__form-submit" type="submit">Создать</button>
+      </form>
+    </div>
+  </div>
+
+
+  <div class="popup popup_picture">
+    <div class="picture">
+      <button class="popup__close popup_picture_close" type="button">
+        <img class="popup__close-icon" src="./images/close-icon.svg" alt="Крест">
+      </button>
+      <img class="picture__image" src="/" alt="/" />
+      <div class="picture__description"></div>
+    </div>
+  </div>
+
+
+
   <template id="cards__item">
     <li class="cards__item">
       <div class="cards__item-image-container">
-        <img class="cards__item-image" src="/" alt="/"/>
+        <img class="cards__item-image" src="/" alt="/" />
       </div>
       <button class="cards__trash-button">
         <img src="./images/trash.svg" alt="Урна" />
@@ -82,6 +97,7 @@
       </div>
     </li>
   </template>
+  <script src="./scripts/constants.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 

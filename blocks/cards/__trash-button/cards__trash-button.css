@@ -6,3 +6,7 @@
   border: none;
   background: transparent;
 }
+
+.cards__trash-button:hover {
+  opacity: .4;
+}
