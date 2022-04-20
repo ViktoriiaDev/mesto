@@ -3,6 +3,7 @@ const editButton = document.querySelector('.profile__edit-button');
 const profilePopup = document.querySelector('.popup_profile');
 const cardPopup = document.querySelector('.popup_card');
 const picturePopup = document.querySelector('.popup_picture');
+
 const profilePopupCloseButton = document.querySelector('.popup__close_profile');
 const cardPopupCloseButton = document.querySelector('.popup__close_card');
 const picturePopupCloseButton = document.querySelector('.popup__close_picture');
@@ -19,7 +20,10 @@ const cardAddButton = document.querySelector('.profile__add-button');
 const picture = document.querySelector('.picture');
 const pictureImage = document.querySelector('.picture__image');
 const pictureDescription = document.querySelector('.picture__description');
-const popupWindow = document.querySelector('.popup__window');
+const popupWindowProfile = profilePopup.querySelector('.popup__window');
+const popupWindowCard = cardPopup.querySelector('.popup__window');
+const popupWindowPicture = picturePopup.querySelector('.picture');
+
 
 
 const createPlace = (card) => {
@@ -124,3 +128,15 @@ cardAddButton.addEventListener('click', handleCardOpen);
 cardPopupCloseButton.addEventListener('click', handleCardClose);
 popupCardForm.addEventListener('submit', handleSubmitCardForm);
 picturePopupCloseButton.addEventListener('click', handlePictureClose);
+
+profilePopup.addEventListener('click', handleProfileClose);
+cardPopup.addEventListener('click', handleCardClose);
+picturePopup.addEventListener('click', handlePictureClose);
+
+function overlay(evt) {
+  evt.stopPropagation();
+}
+
+popupWindowProfile.addEventListener('click', overlay);
+popupWindowCard.addEventListener('click', overlay);
+popupWindowPicture.addEventListener('click', overlay);
