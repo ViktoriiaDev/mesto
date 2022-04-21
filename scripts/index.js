@@ -24,8 +24,6 @@ const popupWindowProfile = profilePopup.querySelector('.popup__window');
 const popupWindowCard = cardPopup.querySelector('.popup__window');
 const popupWindowPicture = picturePopup.querySelector('.picture');
 
-
-
 const createPlace = (card) => {
   const template = document.querySelector('#cards__item');
   const cardItem = template.content.querySelector('.cards__item').cloneNode(true);
@@ -140,3 +138,6 @@ function overlay(evt) {
 popupWindowProfile.addEventListener('click', overlay);
 popupWindowCard.addEventListener('click', overlay);
 popupWindowPicture.addEventListener('click', overlay);
+
+inputTitle.value = title.textContent;
+inputSubtitle.value = subtitle.textContent;

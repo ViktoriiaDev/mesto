@@ -10,6 +10,7 @@
   border-radius: 2px;
   font-size: 18px;
   line-height: 1.2;
+  border: 1px solid #000;
 }
 
 @media screen and (max-width: 1279px) {
