@@ -2,4 +2,10 @@
   position: absolute;
   top: 0;
   width: 100%;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.cards__item-image:hover {
+  transform: scale(1.1);
 }

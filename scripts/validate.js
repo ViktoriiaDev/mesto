@@ -48,30 +48,23 @@ function enableValidation({
   inputErrorClass,
   errorClass,
 }) {
-  const formElement = document.querySelector(formSelector);
-  const inputList = Array.from(formElement.querySelectorAll(inputSelector));
-  const buttonElement = formElement.querySelector(submitButtonSelector);
-  toggleButtonState(inputList, buttonElement, inactiveButtonClass);
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () {
-      checkInputValidity(formElement, inputElement, inputErrorClass,
-        errorClass);
-      toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+  const formList = Array.from(document.querySelectorAll(formSelector));
+  formList.forEach((formElement) => {
+    const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+    const buttonElement = formElement.querySelector(submitButtonSelector);
+    toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+    inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', function () {
+        checkInputValidity(formElement, inputElement, inputErrorClass,
+          errorClass);
+        toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+      });
     });
   });
-}
+};
 
 enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__form-input',
-  submitButtonSelector: '.popup__form-submit',
-  inactiveButtonClass: 'popup__form-submit_disabled',
-  inputErrorClass: 'popup__form-input_error',
-  errorClass: 'popup__form-input-error_visible',
-});
-
-enableValidation({
-  formSelector: '.popup__card-form',
+  formSelector: 'form',
   inputSelector: '.popup__form-input',
   submitButtonSelector: '.popup__form-submit',
   inactiveButtonClass: 'popup__form-submit_disabled',

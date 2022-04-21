@@ -113,6 +113,9 @@ const handleSubmitCardForm = (event) => {
   })
   cardList.prepend(card);
   handleCardClose();
+  const buttonElement = popupCardForm.querySelector('.popup__form-submit');
+  buttonElement.classList.add('popup__form-submit_disabled');
+  buttonElement.disabled = true;
 }
 
 function handlePictureClose() {
@@ -138,6 +141,3 @@ function overlay(evt) {
 popupWindowProfile.addEventListener('click', overlay);
 popupWindowCard.addEventListener('click', overlay);
 popupWindowPicture.addEventListener('click', overlay);
-
-inputTitle.value = title.textContent;
-inputSubtitle.value = subtitle.textContent;
