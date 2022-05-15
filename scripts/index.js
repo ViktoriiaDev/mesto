@@ -36,7 +36,6 @@ const initialCards = [
 
 const ESC_CODE = 'Escape';
 
-
 const editButton = document.querySelector('.profile__edit-button');
 
 const profilePopup = document.querySelector('.popup_profile');
@@ -157,3 +156,15 @@ function overlay(evt) {
 popupWindowProfile.addEventListener('click', overlay);
 popupWindowCard.addEventListener('click', overlay);
 popupWindowPicture.addEventListener('click', overlay);
+
+const formList = Array.from(document.querySelectorAll('form'));
+
+formList.forEach(form => {
+  new FormValidator({
+    inputSelector: '.popup__form-input',
+    submitButtonSelector: '.popup__form-submit',
+    inactiveButtonClass: 'popup__form-submit_disabled',
+    inputErrorClass: 'popup__form-input_error',
+    errorClass: 'popup__form-input-error_visible',
+  }, form).enableValidation();
+})
