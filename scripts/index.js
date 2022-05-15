@@ -1,3 +1,42 @@
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+
+const initialCards = [
+  {
+    name: 'Карачаевск',
+    link: './images/karachaevsk.jpg'
+  },
+
+  {
+    name: 'Гора Эльбрус',
+    link: './images/elbrus.jpg'
+  },
+
+  {
+    name: 'Домбай',
+    link: './images/dombai.jpg'
+  },
+
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  },
+
+  {
+    name: 'Домбай',
+    link: './images/dombai.jpg'
+  },
+
+  {
+    name: 'Карачаевск',
+    link: './images/karachaevsk.jpg'
+  },
+
+];
+
+const ESC_CODE = 'Escape';
+
+
 const editButton = document.querySelector('.profile__edit-button');
 
 const profilePopup = document.querySelector('.popup_profile');
@@ -24,36 +63,21 @@ const popupWindowProfile = profilePopup.querySelector('.popup__window');
 const popupWindowCard = cardPopup.querySelector('.popup__window');
 const popupWindowPicture = picturePopup.querySelector('.picture');
 
-const createPlace = (card) => {
-  const template = document.querySelector('#cards__item');
-  const cardItem = template.content.querySelector('.cards__item').cloneNode(true);
-  const name = cardItem.querySelector('.cards__item-title');
-  const image = cardItem.querySelector('.cards__item-image');
-  const heartButton = cardItem.querySelector('.cards__item-button');
-  const removeCard = cardItem.querySelector('.cards__trash-button');
-  name.textContent = card.name;
-  image.setAttribute('src', card.link);
-  image.setAttribute('alt', card.name);
-
-  heartButton.addEventListener('click', function (event) {
-    event.target.classList.toggle('cards__item-button_active');
-  })
-
-  removeCard.addEventListener('click', function () {
-    cardItem.remove();
-  })
-
-  image.addEventListener('click', function () {
-    openPopup(picturePopup);
-    pictureImage.setAttribute('src', card.link);
-    pictureImage.setAttribute('alt', card.name);
-    pictureDescription.textContent = card.name;
-  })
-
-  return cardItem
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closeByEsc);
 }
 
-const cards = initialCards.map(createPlace);
+const openImagePopup = (name, link) => {
+  openPopup(picturePopup);
+  pictureImage.setAttribute('src', link);
+  pictureImage.setAttribute('alt', name);
+  pictureDescription.textContent = name;
+}
+
+const cards = initialCards.map(card => {
+  return new Card(card.name, card.link, '#cards__item', openImagePopup).generateCard();
+});
 
 cardList.append(...cards);
 
@@ -68,11 +92,6 @@ function closeByEsc(event) {
     const openedPopup = document.querySelector('.popup_opened');
     closePopup(openedPopup);
   }
-}
-
-function openPopup(popup) {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEsc);
 }
 
 function handleProfileOpen() {
@@ -107,10 +126,7 @@ const handleSubmitCardForm = (event) => {
   event.preventDefault();
   const placeName = inputPlaceName.value;
   const placeLink = inputPlaceLink.value;
-  const card = createPlace({
-    name: placeName,
-    link: placeLink,
-  })
+  const card = new Card(placeName, placeLink, '#cards__item', openImagePopup).generateCard()
   cardList.prepend(card);
   handleCardClose();
   const buttonElement = popupCardForm.querySelector('.popup__form-submit');
