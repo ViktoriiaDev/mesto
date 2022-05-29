@@ -1,6 +1,7 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
 import { Section } from './Section.js';
+import { UserInfo } from './UserInfo.js';
 import '../pages/index.css';
 import karachaevskUrl from '../images/karachaevsk.jpg';
 import elbrusUrl from '../images/elbrus.jpg';
@@ -51,8 +52,8 @@ const profilePopupCloseButton = document.querySelector('.popup__close_profile');
 const cardPopupCloseButton = document.querySelector('.popup__close_card');
 const picturePopupCloseButton = document.querySelector('.popup__close_picture');
 const profileForm = document.querySelector('.popup__form');
-const title = document.querySelector('.profile__info-title');
-const subtitle = document.querySelector('.profile__info-subtitle');
+// const title = document.querySelector('.profile__info-title');
+// const subtitle = document.querySelector('.profile__info-subtitle');
 const inputTitle = document.querySelector('.popup__form-input_input_name');
 const inputSubtitle = document.querySelector('.popup__form-input_input_description');
 const popupCardForm = document.querySelector('.popup__card-form');
@@ -66,6 +67,11 @@ const pictureDescription = document.querySelector('.picture__description');
 const popupWindowProfile = profilePopup.querySelector('.popup__window');
 const popupWindowCard = cardPopup.querySelector('.popup__window');
 const popupWindowPicture = picturePopup.querySelector('.picture');
+
+const userInfo = new UserInfo({
+  titleSelector: '.profile__info-title',
+  subtitleSelector: '.profile__info-subtitle'
+})
 
 const formValidators = {}
 
@@ -110,8 +116,9 @@ function closeByEsc(event) {
 function handleProfileOpen() {
   openPopup(profilePopup);
   formValidators['popup-form'].resetValidation();
-  inputTitle.value = title.textContent;
-  inputSubtitle.value = subtitle.textContent;
+  const info = userInfo.getUserInfo();
+  inputTitle.value = info.title;
+  inputSubtitle.value = info.subtitle;
 }
 
 function handleProfileClose() {
@@ -120,8 +127,7 @@ function handleProfileClose() {
 
 function handleSubmitProfileForm(event) {
   event.preventDefault();
-  title.textContent = inputTitle.value;
-  subtitle.textContent = inputSubtitle.value;
+  userInfo.setUserInfo(inputTitle.value, inputSubtitle.value);
   handleProfileClose();
 }
 
