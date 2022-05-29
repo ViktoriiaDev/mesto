@@ -1,20 +1,24 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import '../pages/index.css';
+import karachaevskUrl from '../images/karachaevsk.jpg';
+import elbrusUrl from '../images/elbrus.jpg';
+import dombaiUrl from '../images/dombai.jpg';
 
 const initialCards = [
   {
     name: 'Карачаевск',
-    link: './images/karachaevsk.jpg'
+    link: karachaevskUrl
   },
 
   {
     name: 'Гора Эльбрус',
-    link: './images/elbrus.jpg'
+    link: elbrusUrl
   },
 
   {
     name: 'Домбай',
-    link: './images/dombai.jpg'
+    link: dombaiUrl
   },
 
   {
@@ -24,12 +28,12 @@ const initialCards = [
 
   {
     name: 'Домбай',
-    link: './images/dombai.jpg'
+    link: dombaiUrl
   },
 
   {
     name: 'Карачаевск',
-    link: './images/karachaevsk.jpg'
+    link: karachaevskUrl
   },
 
 ];
@@ -187,3 +191,4 @@ enableValidation({
   inputErrorClass: 'popup__form-input_error',
   errorClass: 'popup__form-input-error_visible',
 });
+
