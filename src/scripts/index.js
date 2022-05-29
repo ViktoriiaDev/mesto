@@ -1,5 +1,6 @@
 import { Card } from './Card.js';
 import { FormValidator } from './FormValidator.js';
+import { Section } from './Section.js';
 import '../pages/index.css';
 import karachaevskUrl from '../images/karachaevsk.jpg';
 import elbrusUrl from '../images/elbrus.jpg';
@@ -81,16 +82,18 @@ const openImagePopup = (name, link) => {
 }
 
 const createCard = (card) => {
-  const cardElement = new Card(card.name, card.link, '#cards__item', openImagePopup).generateCard();
-  return cardElement;
+  return new Card(card.name, card.link, '#cards__item', openImagePopup).generateCard();
 }
 
-const cards = initialCards.map(card => {
-  return createCard(card);
-});
+const defaultCardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const cardElement = createCard(item);
+    defaultCardList.addItem(cardElement);
+  }
+}, '.cards__list');
 
-cardList.append(...cards);
-
+defaultCardList.renderItems();
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
