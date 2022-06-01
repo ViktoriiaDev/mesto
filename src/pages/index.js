@@ -1,49 +1,13 @@
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { Section } from './Section.js';
-import { UserInfo } from './UserInfo.js';
-import { PopupWithForm } from './PopupWithForm';
-import { PopupWithImage } from './PopupWithImage.js';
+import { Card } from '../components/Card.js';
+import { FormValidator } from '../components/FormValidator.js';
+import { Section } from '../components/Section.js';
+import { UserInfo } from '../components/UserInfo.js';
+import { PopupWithForm } from '../components/PopupWithForm';
+import { PopupWithImage } from '../components/PopupWithImage.js';
 import '../pages/index.css';
-import karachaevskUrl from '../images/karachaevsk.jpg';
-import elbrusUrl from '../images/elbrus.jpg';
-import dombaiUrl from '../images/dombai.jpg';
-
-const initialCards = [
-  {
-    name: 'Карачаевск',
-    link: karachaevskUrl
-  },
-
-  {
-    name: 'Гора Эльбрус',
-    link: elbrusUrl
-  },
-
-  {
-    name: 'Домбай',
-    link: dombaiUrl
-  },
-
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  },
-
-  {
-    name: 'Домбай',
-    link: dombaiUrl
-  },
-
-  {
-    name: 'Карачаевск',
-    link: karachaevskUrl
-  },
-
-];
+import { initialCards } from '../utils/constants.js';
 
 const editButton = document.querySelector('.profile__edit-button');
-
 const inputTitle = document.querySelector('.popup__form-input_input_name');
 const inputSubtitle = document.querySelector('.popup__form-input_input_description');
 const cardList = document.querySelector('.cards__list');

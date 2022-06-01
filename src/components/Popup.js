@@ -5,11 +5,12 @@ export class Popup {
     this._popupSelector = document.querySelector(popupSelector);
     this._popupCloseButton = this._popupSelector.querySelector('.popup__close')
     this._popupWindow = this._popupSelector.querySelector('.popup__content');
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   open() {
     this._popupSelector.classList.add('popup_opened');
-    document.addEventListener('keydown', this._handleEscClose.bind(this));
+    document.addEventListener('keydown', this._handleEscClose);
     this._popupWindow.addEventListener('click', this._stopPropagation)
   }
 
