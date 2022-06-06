@@ -1,7 +1,8 @@
 export class Card {
-  constructor(name, link, cardSelector, openImagePopup) {
+  constructor(name, link, likes, cardSelector, openImagePopup) {
     this._name = name;
     this._link = link;
+    this._likes = likes;
     this._cardSelector = cardSelector;
     this._openImagePopup = openImagePopup;
 
@@ -24,6 +25,7 @@ export class Card {
     this._cardImage.setAttribute('src', this._link);
     this._cardImage.setAttribute('alt', this._name);
     this._element.querySelector('.cards__item-title').textContent = this._name;
+    this._element.querySelector('.cards__item-likes').textContent = this._likes.length;
     this._setEventListeners();
 
     return this._element;

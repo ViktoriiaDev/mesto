@@ -6,6 +6,7 @@ import { PopupWithForm } from '../components/PopupWithForm';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import '../pages/index.css';
 import { initialCards } from '../utils/constants.js';
+import { api } from '../components/Api.js';
 
 const editButton = document.querySelector('.profile__edit-button');
 const inputTitle = document.querySelector('.popup__form-input_input_name');
@@ -24,18 +25,20 @@ popupWithImage.setEventListeners();
 const formValidators = {}
 
 const createCard = (card) => {
-  return new Card(card.name, card.link, '#cards__item', popupWithImage.open.bind(popupWithImage)).generateCard();
+  return new Card(card.name, card.link, card.likes, '#cards__item', popupWithImage.open.bind(popupWithImage)).generateCard();
 }
+api.getInitialCards().then(data => {
 
-const defaultCardList = new Section({
-  items: initialCards,
-  renderer: (item) => {
-    const cardElement = createCard(item);
-    defaultCardList.addItem(cardElement);
-  }
-}, '.cards__list');
+  const defaultCardList = new Section({
+    items: data,
+    renderer: (item) => {
+      const cardElement = createCard(item);
+      defaultCardList.addItem(cardElement);
+    }
+  }, '.cards__list');
 
-defaultCardList.renderItems();
+  defaultCardList.renderItems();
+})
 
 function handleSubmitProfileForm(values) {
   userInfo.setUserInfo(values.name, values.description);
@@ -81,7 +84,7 @@ const enableValidation = (config) => {
     const formName = formElement.getAttribute('name')
 
     formValidators[formName] = validator;
-   validator.enableValidation();
+    validator.enableValidation();
   });
 };
 
