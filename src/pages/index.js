@@ -16,8 +16,15 @@ const cardAddButton = document.querySelector('.profile__add-button');
 
 const userInfo = new UserInfo({
   titleSelector: '.profile__info-title',
-  subtitleSelector: '.profile__info-subtitle'
+  subtitleSelector: '.profile__info-subtitle',
+  avatarSelector: '.profile__avatar-image'
 })
+
+api.getProfileInfo().then(data => {
+    userInfo.setUserInfo(data.name, data.about, data.avatar);
+})
+
+
 
 const popupWithImage = new PopupWithImage('.popup_picture')
 popupWithImage.setEventListeners();
@@ -41,7 +48,9 @@ api.getInitialCards().then(data => {
 })
 
 function handleSubmitProfileForm(values) {
-  userInfo.setUserInfo(values.name, values.description);
+  api.sendUserInfo(values.name, values.description).then((data) => {
+    userInfo.setUserInfo(data.name, data.about, data.avatar)
+  })
 }
 
 const userInfoPopup = new PopupWithForm('.popup_profile', handleSubmitProfileForm, false)
@@ -54,12 +63,14 @@ function handleCardOpen() {
 const handleSubmitCardForm = (values) => {
   const placeName = values['place-name'];
   const placeLink = values['place-link'];
-  const card = createCard({
-    name: placeName,
-    link: placeLink,
-  });
-  cardList.prepend(card);
-  formValidators['popup-card-form'].resetValidation();
+  api.addCard(placeName, placeLink).then((data) => {
+    const card = createCard({
+      name: placeName,
+      link: placeLink,
+    });
+    cardList.prepend(card);
+    formValidators['popup-card-form'].resetValidation();
+  })
 }
 
 const cardPopup = new PopupWithForm('.popup_card', handleSubmitCardForm, true)

@@ -1,5 +1,5 @@
 export class Card {
-  constructor(name, link, likes, cardSelector, openImagePopup) {
+  constructor(name, link, likes = [], cardSelector, openImagePopup) {
     this._name = name;
     this._link = link;
     this._likes = likes;
