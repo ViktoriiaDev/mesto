@@ -1,11 +1,12 @@
 export class Card {
-  constructor(name, link, likes = [], cardSelector, openImagePopup) {
+  constructor(name, link, likes = [], isMeOwner, cardSelector, openImagePopup, openDeletePopup) {
     this._name = name;
     this._link = link;
     this._likes = likes;
+    this._isMeOwner = isMeOwner;
     this._cardSelector = cardSelector;
     this._openImagePopup = openImagePopup;
-
+    this._openDeletePopup = openDeletePopup;
   }
 
 
@@ -26,6 +27,9 @@ export class Card {
     this._cardImage.setAttribute('alt', this._name);
     this._element.querySelector('.cards__item-title').textContent = this._name;
     this._element.querySelector('.cards__item-likes').textContent = this._likes.length;
+    if(!this._isMeOwner) {
+      this._element.querySelector('.cards__trash-button').classList.add('hidden')
+    }
     this._setEventListeners();
 
     return this._element;
@@ -40,14 +44,19 @@ export class Card {
     this._element.remove()
   };
 
+  _handleDelete = () => {
+    this._openDeletePopup(this._element)
+  }
+
   _handleImageClick = () => {
     this._openImagePopup(this._name, this._link)
   };
 
   _setEventListeners() {
     this._element.querySelector('.cards__item-button').addEventListener('click', this._toggleLike);
-    this._element.querySelector('.cards__trash-button').addEventListener('click', this._deleteCard);
+    if(this._isMeOwner) {
+      this._element.querySelector('.cards__trash-button').addEventListener('click', this._handleDelete)
+    };
     this._element.querySelector('.cards__item-image').addEventListener('click', this._handleImageClick);
   }
 }
-
