@@ -88,7 +88,7 @@
       </button>
       <h2 class="popup__title">Вы уверены?</h2>
       <form class="popup__form" name="popup-remove-form" novalidate>
-        <input name="cardId" class="popup__form-input popup__form-input_cardId" />
+        <input name="cardId" class="popup__form-input popup__form-input_cardId hidden" />
         <button class="popup__form-submit" type="submit">Да</button>
       </form>
     </div>
@@ -101,9 +101,9 @@
       </button>
       <h2 class="popup__title">Обновить аватар</h2>
       <form class="popup__form" name="popup-avatar-form" novalidate>
-        <input placeholder="Ссылка на аватар" name="avatar-link" id="avatar-link" type="url"
+        <input placeholder="Ссылка на аватар" name="avatar" id="avatar-link" type="url"
           class="popup__form-input popup__form-input_avatar_link" required />
-        <span class="popup__form-input-error place-avatar-error"></span>
+        <span class="popup__form-input-error avatar-link-error"></span>
         <button class="popup__form-submit" type="submit">Сохранить</button>
       </form>
     </div>

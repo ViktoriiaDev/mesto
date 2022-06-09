@@ -43,7 +43,7 @@ popupDelete.setEventListeners();
 
 //удаление карточки с сервера
 function handleDeleteCard(values) {
-  api.deleteCard(values.cardId).then(() => {
+  return api.deleteCard(values.cardId).then(() => {
     popupDelete.card.remove();
   })
 }
@@ -58,7 +58,7 @@ const createCard = (card) => {
     popupDelete.open.bind(popupDelete)();
   }
 
-  return new Card(card.name, card.link, card.likes, isMeOwner, '#cards__item', popupWithImage.open.bind(popupWithImage), deletePopupOpen).generateCard();
+  return new Card(card.name, card.link, card.likes, card._id, isMeOwner, '#cards__item', popupWithImage.open.bind(popupWithImage), deletePopupOpen).generateCard();
 }
 
 //получение карточек и их отрисовка
@@ -76,7 +76,7 @@ api.getInitialCards().then(data => {
 
 //отправка данных профиля и изменение их на странице
 function handleSubmitProfileForm(values) {
-  api.sendUserInfo(values.name, values.description).then((data) => {
+  return api.sendUserInfo(values.name, values.description).then((data) => {
     userInfo.setUserInfo(data.name, data.about, data.avatar)
   })
 }
@@ -87,11 +87,23 @@ const userInfoPopup = new PopupWithForm('.popup_profile', handleSubmitProfileFor
 //обработчики для попапа с профилем
 userInfoPopup.setEventListeners();
 
+function handleSubmitProfileAvatar(values) {
+  return api.changeAvatar(values.avatar).then((data) => {
+    userInfo.setUserInfo(data.name, data.about, data.avatar)
+  })
+}
+
+const changeProfileAvatar = new PopupWithForm('.popup_avatar', handleSubmitProfileAvatar, false);
+
+changeProfileAvatar.setEventListeners();
+
+document.querySelector('.profile__avatar').addEventListener('click', changeProfileAvatar.open.bind(changeProfileAvatar))
+
 //создание карточки, сброс валидации
 const handleSubmitCardForm = (values) => {
   const placeName = values['place-name'];
   const placeLink = values['place-link'];
-  api.addCard(placeName, placeLink).then((data) => {
+  return api.addCard(placeName, placeLink).then((data) => {
     const card = createCard(data);
     cardList.prepend(card);
     formValidators['popup-card-form'].resetValidation();
