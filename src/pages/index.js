@@ -24,7 +24,7 @@ const profilePromise = api.getProfileInfo()
 
 const defaultCardList = new Section((item) => {
   const info = userInfo.getUserInfo();
-  const cardElement = createCard(item, info.ownerId);
+  const cardElement = createCard(item, info.ownId);
   defaultCardList.addItem(cardElement);
 }, '.cards__list');
 

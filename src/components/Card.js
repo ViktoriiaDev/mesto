@@ -52,7 +52,7 @@ export class Card {
   }
 
   _toggleLike = (event) => {
-    if (this._likes.find(item => item._id === ownId)) {
+    if (this._likes.find(item => item._id === this._ownerId)) {
       this._deleteLike(this._cardId).then((data) => {
         this._rerenderLikes(event, data)
       })
