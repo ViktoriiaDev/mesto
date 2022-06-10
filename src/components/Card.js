@@ -1,7 +1,5 @@
-import { api } from './Api';
-import { ownId } from '../utils/constants';
 export class Card {
-  constructor(name, link, likes = [], cardId, isMeOwner, cardSelector, openImagePopup, openDeletePopup) {
+  constructor(name, link, likes = [], cardId, isMeOwner, ownerId, cardSelector, openImagePopup, openDeletePopup, setLike, deleteLike) {
     this._name = name;
     this._link = link;
     this._likes = likes;
@@ -10,6 +8,9 @@ export class Card {
     this._cardSelector = cardSelector;
     this._openImagePopup = openImagePopup;
     this._openDeletePopup = openDeletePopup;
+    this._setLike = setLike;
+    this._deleteLike = deleteLike;
+    this._ownerId = ownerId
   }
 
 
@@ -29,51 +30,51 @@ export class Card {
     this._cardImage.setAttribute('src', this._link);
     this._cardImage.setAttribute('alt', this._name);
     this._element.querySelector('.cards__item-title').textContent = this._name;
-    this._element.querySelector('.cards__item-likes').textContent = this._likes.length;
+    this._itemLikes = this._element.querySelector('.cards__item-likes');
+    this._itemLikes.textContent = this._likes.length;
+    this._trashButton = this._element.querySelector('.cards__trash-button');
+    this._itemButton = this._element.querySelector('.cards__item-button');
     if (!this._isMeOwner) {
-      this._element.querySelector('.cards__trash-button').classList.add('hidden')
+      this._trashButton.classList.add('hidden')
     }
-    if (this._likes.find(item => item._id === ownId)) {
-      this._element.querySelector('.cards__item-button').classList.add('cards__item-button_active')
+    if (this._likes.find(item => item._id === this._ownerId)) {
+      this._itemButton.classList.add('cards__item-button_active')
     }
     this._setEventListeners();
 
     return this._element;
   };
 
+  _rerenderLikes(event, data) {
+    event.target.classList.toggle('cards__item-button_active');
+    this._likes = data.likes;
+    this._itemLikes.textContent = this._likes.length;
+  }
 
   _toggleLike = (event) => {
     if (this._likes.find(item => item._id === ownId)) {
-      this._deleteLike().then(() => {
-        event.target.classList.toggle('cards__item-button_active');
+      this._deleteLike(this._cardId).then((data) => {
+        this._rerenderLikes(event, data)
       })
+      .catch((err) => {
+        console.log(err);
+      });
     } else {
-      this._setLike().then(() => {
-        event.target.classList.toggle('cards__item-button_active');
+      this._setLike(this._cardId).then((data) => {
+        this._rerenderLikes(event, data)
+      })
+      .catch((err) => {
+        console.log(err);
       });
     }
   };
-
-  _setLike() {
-    return api.like(this._cardId).then((data) => {
-      this._likes = data.likes;
-      this._element.querySelector('.cards__item-likes').textContent = this._likes.length;
-    })
-  }
-
-  _deleteLike() {
-    return api.deleteLike(this._cardId).then((data) => {
-      this._likes = data.likes;
-      this._element.querySelector('.cards__item-likes').textContent = this._likes.length;
-    })
-  }
 
   _deleteCard = () => {
     this._element.remove()
   };
 
   _handleDelete = () => {
-    this._openDeletePopup(this._element)
+    this._openDeletePopup(this._deleteCard)
   }
 
   _handleImageClick = () => {
@@ -81,10 +82,10 @@ export class Card {
   };
 
   _setEventListeners() {
-    this._element.querySelector('.cards__item-button').addEventListener('click', this._toggleLike);
+    this._itemButton.addEventListener('click', this._toggleLike);
     if (this._isMeOwner) {
-      this._element.querySelector('.cards__trash-button').addEventListener('click', this._handleDelete)
+      this._trashButton.addEventListener('click', this._handleDelete)
     };
-    this._element.querySelector('.cards__item-image').addEventListener('click', this._handleImageClick);
+    this._cardImage.addEventListener('click', this._handleImageClick);
   }
 }

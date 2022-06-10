@@ -8,12 +8,13 @@ export class UserInfo {
   getUserInfo() {
     const title = this._titleElement.textContent;
     const subtitle = this._subtitleElement.textContent;
-    return { title, subtitle }
+    return { title, subtitle, ownId: this._ownId }
   }
 
-  setUserInfo(title, subtitle, url) {
+  setUserInfo(title, subtitle, url, id) {
     this._titleElement.textContent = title;
     this._subtitleElement.textContent = subtitle;
-    this._avatarElement.setAttribute('src', url)
+    this._avatarElement.setAttribute('src', url);
+    this._ownId = id;
   }
 }
