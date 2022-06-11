@@ -45,27 +45,18 @@ export class Card {
     return this._element;
   };
 
-  _rerenderLikes(event, data) {
-    event.target.classList.toggle('cards__item-button_active');
+  _rerenderLikes(data) {
+    this._itemButton.classList.toggle('cards__item-button_active');
     this._likes = data.likes;
     this._itemLikes.textContent = this._likes.length;
   }
 
-  _toggleLike = (event) => {
+  _toggleLike = () => {
     if (this._likes.find(item => item._id === this._ownerId)) {
-      this._deleteLike(this._cardId).then((data) => {
-        this._rerenderLikes(event, data)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      this._deleteLike(this._cardId)
+
     } else {
-      this._setLike(this._cardId).then((data) => {
-        this._rerenderLikes(event, data)
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      this._setLike(this._cardId)
     }
   };
 

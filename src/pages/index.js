@@ -40,16 +40,6 @@ Promise.all([profilePromise, cardsPromise])
   console.log(err);
 });
 
-//установка лайка
-function setLike(cardId) {
-  return api.like(cardId)
-}
-
-//удаление лайка
-function deleteLike(cardId) {
-  return api.deleteLike(cardId)
-}
-
 //создание попапа с картинкой
 const popupWithImage = new PopupWithImage('.popup_picture')
 
@@ -92,7 +82,26 @@ const createCard = (card, ownId) => {
   return new Card(card.name, card.link, card.likes, card._id, isMeOwner, ownId, '#cards__item', popupWithImage.open.bind(popupWithImage), deletePopupOpen, setLike, deleteLike).generateCard();
 }
 
+//установка лайка
+function setLike(cardId) {
+  api.like(cardId).then((data) => {
+    this._rerenderLikes(data)
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
 
+//удаление лайка
+function deleteLike(cardId) {
+  api.deleteLike(cardId)
+  .then((data) => {
+    this._rerenderLikes(data)
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+}
 
 //создание попапа с профилем
 const userInfoPopup = new PopupWithForm('.popup_profile', handleSubmitProfileForm, false)
@@ -122,7 +131,7 @@ const changeProfileAvatar = new PopupWithForm('.popup_avatar', handleSubmitProfi
 function handleSubmitProfileAvatar(values) {
   changeProfileAvatar.setSubmitButtonText('Сохранение...', true);
   api.changeAvatar(values.avatar).then((data) => {
-    userInfo.setUserInfo(data.name, data.about, data.avatar);
+    userInfo.setUserInfo(data.name, data.about, data.avatar, data._id);
     changeProfileAvatar.close()
   })
     .catch((err) => {
@@ -150,14 +159,13 @@ function handleSubmitCardForm(values) {
     const info = userInfo.getUserInfo()
     const card = createCard(data, info.ownId);
     defaultCardList.addItem(card);
-    formValidators['popup-card-form'].resetValidation();
     cardPopup.close()
   })
     .catch((err) => {
       console.log(err);
     })
     .finally(() => {
-      cardPopup.setSubmitButtonText('Сохранить', false)
+      cardPopup.setSubmitButtonText('Создать', false)
     })
 }
 
@@ -166,16 +174,19 @@ cardPopup.setEventListeners();
 
 //открывает попап профиля
 editButton.addEventListener('click', () => {
-  formValidators['popup-form'].resetValidation();
   const info = userInfo.getUserInfo();
   inputTitle.value = info.title;
   inputSubtitle.value = info.subtitle;
+  formValidators['popup-form'].resetValidation();
+
   userInfoPopup.open.bind(userInfoPopup)();
 });
 
 //открытие попапа с карточкой
 cardAddButton.addEventListener('click', () => {
   cardPopup.open();
+  formValidators['popup-card-form'].resetValidation();
+
 });
 
 const enableValidation = (config) => {
