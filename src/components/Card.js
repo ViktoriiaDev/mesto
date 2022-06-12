@@ -45,10 +45,11 @@ export class Card {
     return this._element;
   };
 
-  _rerenderLikes(data) {
-    this._itemButton.classList.toggle('cards__item-button_active');
+  rerenderLikes(data) {
     this._likes = data.likes;
     this._itemLikes.textContent = this._likes.length;
+    const thisIsMyLike = this._likes.find(item => item._id === this._ownerId);
+    this._itemButton.classList.toggle('cards__item-button_active', thisIsMyLike);
   }
 
   _toggleLike = () => {

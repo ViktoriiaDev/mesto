@@ -85,7 +85,7 @@ const createCard = (card, ownId) => {
 //установка лайка
 function setLike(cardId) {
   api.like(cardId).then((data) => {
-    this._rerenderLikes(data)
+    this.rerenderLikes(data)
   })
   .catch((err) => {
     console.log(err);
@@ -96,7 +96,7 @@ function setLike(cardId) {
 function deleteLike(cardId) {
   api.deleteLike(cardId)
   .then((data) => {
-    this._rerenderLikes(data)
+    this.rerenderLikes(data)
   })
   .catch((err) => {
     console.log(err);
